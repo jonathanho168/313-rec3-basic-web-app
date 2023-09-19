@@ -55,6 +55,11 @@ export default function QueryProcessor(query: string): string {
         return result.toString();
     }
 
+    const subtractionMatch = query.match(/what is (\d+) minus (\d+)\?/i);
+    if (subtractionMatch && subtractionMatch.length === 3) {
+        const result = parseInt(subtractionMatch[1]) - parseInt(subtractionMatch[2]);
+        return result.toString();
+    }
 
   return "";
 }

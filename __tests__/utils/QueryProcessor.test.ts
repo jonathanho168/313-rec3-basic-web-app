@@ -50,4 +50,8 @@ describe("QueryProcessor", () => {
     test('should find product', () => {
         expect(QueryProcessor("What is 34 multiplied by 35?")).toEqual("1190");
     });
+
+    test('should find difference', () => {
+        expect(QueryProcessor("What is 32 minus 66?")).toEqual("-34");
+    });
 });
