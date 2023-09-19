@@ -1,3 +1,8 @@
+function isSquareAndCube(n: number): boolean {
+  const root = Math.round(Math.pow(n, 1/6)); // sixth root of the number
+  return Math.pow(root, 6) === n; // check if the sixth power of the root is equal to the original number
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -19,10 +24,11 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
-  const additionMatch = query.match(/what is (\d+) plus (\d+)\?/i);
-  if (additionMatch && additionMatch.length === 3) {
-    const result = parseInt(additionMatch[1]) + parseInt(additionMatch[2]);
-    return result.toString();
+  const addMatch = query.match(/What is (\d+) plus (\d+)/);
+  if (addMatch) {
+    const x: number = parseInt(addMatch[1]);
+    const y: number = parseInt(addMatch[2]);
+    return (x+y).toString();
   }
 
   // Answer for largest number questions
@@ -32,6 +38,17 @@ export default function QueryProcessor(query: string): string {
     const largest = Math.max(...numbers);
     return largest.toString();
   }
+
+  const squareAndCubeMatch = query.match(/Which of the following numbers is both a square and a cube:([\d ,]+)\?/i);
+    if (squareAndCubeMatch && squareAndCubeMatch.length === 2) {
+        const numbers = squareAndCubeMatch[1].split(',').map(num => parseInt(num.trim()));
+        for (let num of numbers) {
+            if (isSquareAndCube(num)) {
+                return num.toString();
+            }
+        }
+    }
+
 
   return "";
 }

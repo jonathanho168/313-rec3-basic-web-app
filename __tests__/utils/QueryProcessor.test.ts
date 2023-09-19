@@ -42,4 +42,8 @@ describe("QueryProcessor", () => {
     test('should find greatest number', () => {
         expect(QueryProcessor("Which of the following numbers is the largest: 34, 12, 93?")).toEqual("93");
     });
+
+    test('should find square and cube', () => {
+        expect(QueryProcessor("Which of the following numbers is both a square and a cube: 4452, 4273, 729, 4096, 512, 686, 2231?")).toEqual("729");
+    });
 });
