@@ -64,5 +64,9 @@ describe("QueryProcessor", () => {
     //     expect(QueryProcessor("What is 53 to the power of 81?")).toEqual("43");
     // });
 
+    test('should find prime numbers', () => {
+        expect(QueryProcessor("What is 56 plus 72 plus 48?")).toEqual("176");
+    });
+
     
 });
