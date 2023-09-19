@@ -3,6 +3,18 @@ function isSquareAndCube(n: number): boolean {
   return Math.pow(root, 6) === n; // check if the sixth power of the root is equal to the original number
 }
 
+function isPrime(n: number): boolean {
+  if (n <= 1) return false;
+  if (n <= 3) return true;
+  if (n % 2 === 0 || n % 3 === 0) return false;
+  let i = 5;
+  while (i * i <= n) {
+      if (n % i === 0 || n % (i + 2) === 0) return false;
+      i += 6;
+  }
+  return true;
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -60,6 +72,14 @@ export default function QueryProcessor(query: string): string {
         const result = parseInt(subtractionMatch[1]) - parseInt(subtractionMatch[2]);
         return result.toString();
     }
+
+    const primeMatch = query.match(/which of the following numbers are primes:([\d ,]+)\?/i);
+    if (primeMatch && primeMatch.length === 2) {
+        const numbers = primeMatch[1].split(',').map(num => parseInt(num.trim()));
+        const primes = numbers.filter(isPrime);
+        return primes.join(", ");
+    }
+
 
   return "";
 }
