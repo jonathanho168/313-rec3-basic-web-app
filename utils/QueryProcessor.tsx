@@ -81,5 +81,21 @@ export default function QueryProcessor(query: string): string {
     }
 
 
+    const powerMatch = query.match(/what is (\d+) to the power of (\d+)\?/i);
+    if (powerMatch && powerMatch.length === 3) {
+        // Compute the result. Keep in mind that this might return an approximation or 
+        // might even throw an error for very large computations.
+        const result = Math.pow(parseInt(powerMatch[1]), parseInt(powerMatch[2]));
+        return result.toString();
+    }
+
+
+    const additionMatch = query.match(/what is ((\d+ plus )+\d+)\?/i);
+    if (additionMatch && additionMatch.length >= 2) {
+        const numbers = additionMatch[1].split(' plus ').map(num => parseInt(num.trim()));
+        const result = numbers.reduce((acc, curr) => acc + curr, 0);
+        return result.toString();
+    }
+
   return "";
 }

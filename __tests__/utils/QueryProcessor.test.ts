@@ -55,7 +55,14 @@ describe("QueryProcessor", () => {
         expect(QueryProcessor("What is 32 minus 66?")).toEqual("-34");
     });
 
-    test('should find prime number', () => {
+    test('should find prime numbers', () => {
         expect(QueryProcessor("Which of the following numbers are primes: 43, 27, 62, 63, 65?")).toEqual("43");
+        expect(QueryProcessor("Which of the following numbers are primes: 79, 77, 42, 87, 83?")).toEqual("79, 83");
     });
+
+    // test('should do exponentiation', () => {
+    //     expect(QueryProcessor("What is 53 to the power of 81?")).toEqual("43");
+    // });
+
+    
 });
