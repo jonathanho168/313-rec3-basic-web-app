@@ -33,4 +33,13 @@ describe("QueryProcessor", () => {
             "jonathan"
           ));
     });
+
+    test('should add numbers', () => {
+        expect(QueryProcessor("What is 5 plus 52?")).toEqual("57");
+        expect(QueryProcessor("What is 12 plus 1?")).toEqual("13");
+    });
+
+    test('should find greatest number', () => {
+        expect(QueryProcessor("Which of the following numbers is the largest: 34, 12, 93?")).toEqual("93");
+    });
 });
