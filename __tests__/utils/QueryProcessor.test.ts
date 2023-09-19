@@ -46,4 +46,8 @@ describe("QueryProcessor", () => {
     test('should find square and cube', () => {
         expect(QueryProcessor("Which of the following numbers is both a square and a cube: 4452, 4273, 729, 4096, 512, 686, 2231?")).toEqual("729");
     });
+
+    test('should find product', () => {
+        expect(QueryProcessor("What is 34 multiplied by 35?")).toEqual("1190");
+    });
 });

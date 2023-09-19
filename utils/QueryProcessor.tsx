@@ -49,6 +49,12 @@ export default function QueryProcessor(query: string): string {
         }
     }
 
+    const multiplicationMatch = query.match(/what is (\d+) multiplied by (\d+)\?/i);
+    if (multiplicationMatch && multiplicationMatch.length === 3) {
+        const result = parseInt(multiplicationMatch[1]) * parseInt(multiplicationMatch[2]);
+        return result.toString();
+    }
+
 
   return "";
 }
